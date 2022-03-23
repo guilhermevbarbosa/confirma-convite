@@ -1,5 +1,7 @@
 .card-space {
-  height: 100%;
+  position: absolute;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
 
   display: flex;
   align-items: center;
@@ -65,6 +67,7 @@
         -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
         box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
         border-radius: 4px;
+        cursor: pointer;
       }
     }
   }

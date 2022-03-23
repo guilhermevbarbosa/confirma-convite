@@ -10,8 +10,6 @@
 }
 
 body {
-  min-height: 100vh;
-  height: 100vh;
   font-family: "Raleway", sans-serif;
 
   input,
@@ -23,7 +21,7 @@ body {
   }
 
   .container {
-    height: calc(100% - 20px);
+    min-height: calc(100vh - 20px);
     padding: 10px;
 
     &.bg-grad {

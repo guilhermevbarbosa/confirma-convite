@@ -10,8 +10,8 @@
           <h2>Novo convite</h2>
 
           <form>
-            <input type="text" name="cnome" id="cNome" placeholder="Nome do convite">
-            <select name="cquantidade" id="cQuantidade">
+            <input [(ngModel)]="invite.name" type="text" name="cnome" placeholder="Nome do convite">
+            <select [(ngModel)]="invite.amount" name="cquantidade">
               <option disabled selected value="0">Quantidade de convidados</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -29,7 +29,7 @@
       </div>
 
       <div class="bottom">
-        <a href="#">Cadastrar</a>
+        <a (click)="createInvite()">Cadastrar</a>
       </div>
     </div>
   </div>
