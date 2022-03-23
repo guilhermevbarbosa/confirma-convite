@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+.card-space {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-space .card {
+  width: 500px;
+  max-width: 500px;
+  min-height: 300px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-space .card .top {
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid #878787;
+}
+.card-space .card .top h1 {
+  padding: 20px;
+  font-size: 22px;
+}
+.card-space .card .mid {
+  padding: 15px 20px 0px 20px;
+}
+.card-space .card .mid h2 {
+  font-size: 18px;
+}
+.card-space .card .mid form input,
+.card-space .card .mid form select {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  border-bottom: 2px solid #878787;
+  padding-bottom: 5px;
+}
+.card-space .card .bottom {
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+.card-space .card .bottom a {
+  text-decoration: none;
+  background-color: #4158d0;
+  padding: 10px;
+  color: #ffffff;
+  font-weight: 600;
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  vertical-align: baseline;
+  list-style: none;
+  border: 0;
+}
+
+body {
+  min-height: 100vh;
+  height: 100vh;
+  font-family: "Raleway", sans-serif;
+}
+body input:focus, body input:focus-visible,
+body select:focus,
+body select:focus-visible {
+  outline: none !important;
+}
+body .container {
+  height: calc(100% - 20px);
+  padding: 10px;
+}
+body .container.bg-grad {
+  background-color: #4158d0;
+  background-image: linear-gradient(43deg, #4158d0 0%, #c850c0 46%, #ffcc70 100%);
+}
+
+/*# sourceMappingURL=style.css.map */
