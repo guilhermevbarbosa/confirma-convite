@@ -11,11 +11,13 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { NewInviteComponent } from './views/new-invite/new-invite.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewInviteComponent
+    NewInviteComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

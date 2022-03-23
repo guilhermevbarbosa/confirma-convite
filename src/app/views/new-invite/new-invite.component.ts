@@ -17,30 +17,73 @@ export class NewInviteComponent implements OnInit {
     amount: 0
   };
 
+  loading = false;
+  inputNameErrorMessage = '';
+  inputQuantErrorMessage = '';
+
   constructor(inviteService: InviteService) {
     this.iS = inviteService;
   }
 
   ngOnInit(): void { }
 
-  onSave(invite: Invite): void {
-    this.iS.create(invite).then(() => {
-      Swal.fire(
-        'Sucesso!',
-        'Convite criado com sucesso',
-        'success'
-      );
-    }).catch((error) => {
-      Swal.fire(
-        'Erro!',
-        error,
-        'error'
-      );
-      console.log(error)
-    })
+  resetInvite() {
+    this.invite.name = '';
+    this.invite.amount = 0;
   }
 
   createInvite() {
-    this.onSave(this.invite);
+    this.verifyFields();
   }
+
+  verifyFields() {
+    let errors = 0;
+
+    if (this.invite.name.length < 3) {
+      this.inputNameErrorMessage = 'É necessário no mínimo 3 caracteres.';
+      errors++;
+    } else {
+      this.inputNameErrorMessage = '';
+    }
+
+    if (this.invite.amount == 0) {
+      this.inputQuantErrorMessage = 'É necessário pelo menos um convidado';
+      errors++;
+    } else {
+      this.inputQuantErrorMessage = '';
+    }
+
+    if (errors) {
+      return false;
+    } else {
+      return this.onSave(this.invite);
+    }
+  }
+
+  onSave(invite: Invite): void {
+    this.loading = true;
+
+    this.iS.create(invite)
+      .then(() => {
+        this.loading = false;
+        this.resetInvite();
+
+        Swal.fire(
+          'Sucesso!',
+          'Convite criado com sucesso',
+          'success'
+        );
+      }).catch((error) => {
+        this.loading = false;
+
+        Swal.fire(
+          'Erro!',
+          error,
+          'error'
+        );
+        console.log(error)
+      })
+  }
+
+
 }

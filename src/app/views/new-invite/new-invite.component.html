@@ -10,20 +10,27 @@
           <h2>Novo convite</h2>
 
           <form>
-            <input [(ngModel)]="invite.name" type="text" name="cnome" placeholder="Nome do convite">
-            <select [(ngModel)]="invite.amount" name="cquantidade">
-              <option disabled selected value="0">Quantidade de convidados</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
+            <div class="input-area">
+              <input [(ngModel)]="invite.name" type="text" name="cnome" placeholder="Nome do convite">
+              <span *ngIf="inputNameErrorMessage.length > 0" class="error">{{inputNameErrorMessage}}</span>
+            </div>
+
+            <div class="input-area">
+              <select [(ngModel)]="invite.amount" name="cquantidade">
+                <option disabled selected value="0">Quantidade de convidados</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
+              <span *ngIf="inputQuantErrorMessage.length > 0" class="error">{{inputQuantErrorMessage}}</span>
+            </div>
           </form>
         </div>
       </div>
@@ -34,3 +41,5 @@
     </div>
   </div>
 </div>
+
+<app-loading [isActive]="loading"></app-loading>
