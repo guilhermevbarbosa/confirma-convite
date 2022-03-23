@@ -1,0 +1,56 @@
+h1 {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 40px;
+}
+
+.invites {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+
+  .card {
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 100ms ease-in-out;
+    border-radius: 4px;
+    max-width: 350px;
+    cursor: default;
+
+    .content {
+      p {
+        font-size: 16px;
+        margin-bottom: 20px;
+
+        span {
+          font-weight: bold;
+          display: block;
+          margin-bottom: 5px;
+        }
+      }
+
+      .icon {
+        height: 40px;
+        width: 40px;
+
+        &.checked {
+          color: rgb(15, 114, 15);
+        }
+
+        &.not-checked{
+          color: rgb(167, 4, 4);
+        }
+      }
+    }
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+  .content {
+    padding: 30px;
+  }
+}
