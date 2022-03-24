@@ -30,10 +30,10 @@ export class InvitesListComponent implements OnInit {
   getAll() {
     const node = collection(this.fsRef, '/invites');
 
-    onSnapshot(node, (querySnapshot: any) => {
+    onSnapshot(node, (snapshot: any) => {
       this.invites = [];
 
-      querySnapshot.forEach((doc: any) => {
+      snapshot.forEach((doc: any) => {
         this.invites.push(doc.data());
       });
 
