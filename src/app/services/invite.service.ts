@@ -26,9 +26,10 @@ export class InviteService {
 
     return this.invites.doc<Invite>(uid).set({
       uid,
+      code: invite.code,
       name: invite.name,
       amount: invite.amount,
-      confirmed: false
+      confirmed: false,
     });
   }
 

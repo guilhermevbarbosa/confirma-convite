@@ -14,7 +14,8 @@ export class NewInviteComponent implements OnInit {
   iS: InviteService;
   invite: Invite = {
     name: '',
-    amount: 0
+    amount: 0,
+    code: '',
   };
 
   loading = false;
@@ -56,8 +57,13 @@ export class NewInviteComponent implements OnInit {
     if (errors) {
       return false;
     } else {
+      this.invite.code = this.generateUniqueCode();
       return this.onSave(this.invite);
     }
+  }
+
+  generateUniqueCode() {
+    return (Math.floor(Date.now() * Math.random()).toString(36)).slice(0, 5);
   }
 
   onSave(invite: Invite): void {
@@ -81,9 +87,7 @@ export class NewInviteComponent implements OnInit {
           error,
           'error'
         );
-        console.log(error)
+        console.log(error);
       })
   }
-
-
 }

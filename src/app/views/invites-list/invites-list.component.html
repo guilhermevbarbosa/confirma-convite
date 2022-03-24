@@ -5,7 +5,7 @@
     <div *ngFor="let invite of invites | async" class="card">
       <div class="content">
         <div class="top">
-          <i-tabler (click)="delete()" class="icon trash" name="trash"></i-tabler>
+          <i-tabler (click)="delete(invite.uid)" class="icon trash" name="trash"></i-tabler>
         </div>
 
         <div class="mid">
@@ -21,7 +21,7 @@
 
           <p class="data">
             <span>Código</span>
-            {{ invite.uid }}
+            {{ invite.code }}
           </p>
 
           <i-tabler *ngIf="invite.confirmed" class="icon checked" name="circle-check"></i-tabler>
