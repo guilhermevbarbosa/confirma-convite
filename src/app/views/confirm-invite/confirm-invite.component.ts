@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { take } from 'rxjs';
 
 import { InviteService } from 'src/app/services/invite.service';
 
@@ -26,6 +25,6 @@ export class ConfirmInviteComponent implements OnInit {
   }
 
   async getInviteData() {
-    this.invite = this.iS.confirmInvite('66zae');
+    // this.invite = this.iS.confirmInvite('66zae');
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, CollectionReference } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
+
+import { Firestore, doc, deleteDoc, collection, setDoc } from '@angular/fire/firestore';
 
 import { Invite } from '../models/invite.model';
 
@@ -9,39 +9,28 @@ import { Invite } from '../models/invite.model';
 })
 export class InviteService {
 
+  private fsRef: Firestore;
   private CHILD_INVITES = '/invites';
-  invites!: AngularFirestoreCollection<Invite>;
+  private cities: any = [];
 
-  constructor(private db: AngularFirestore) {
-    this.set();
+  constructor(firestore: Firestore) {
+    this.fsRef = firestore;
   }
 
-  private set(): void {
-    this.invites = this.db.collection<Invite>(this.CHILD_INVITES,
-      (ref: CollectionReference) => ref.orderBy('name', 'desc'));
+  delete(uid: string) {
+    const document = doc(this.fsRef, this.CHILD_INVITES, uid);
+    return deleteDoc(document);
   }
 
-  create(invite: Invite): Promise<void> {
-    const uid = this.db.createId();
+  create(invite: Invite) {
+    const uid = doc(collection(this.fsRef, this.CHILD_INVITES)).id;
 
-    return this.invites.doc<Invite>(uid).set({
+    return setDoc(doc(this.fsRef, this.CHILD_INVITES, uid), {
       uid,
       code: invite.code,
       name: invite.name,
       amount: invite.amount,
       confirmed: false,
     });
-  }
-
-  get(uid: string): Observable<any> {
-    return this.invites.doc<Invite>(uid).valueChanges();
-  }
-
-  delete(uid: string): Promise<void> {
-    return this.invites.doc<Invite>(uid).delete();
-  }
-
-  confirmInvite(inviteCode: string): void {
-    return console.log(inviteCode);
   }
 }

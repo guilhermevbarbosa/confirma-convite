@@ -2,10 +2,10 @@
   <h1>Convites</h1>
 
   <div class="invites">
-    <div *ngFor="let invite of invites | async" class="card">
+    <div *ngFor="let invite of invites" class="card">
       <div class="content">
         <div class="top">
-          <i-tabler (click)="delete(invite.uid)" class="icon trash" name="trash"></i-tabler>
+          <i-tabler (click)="delete(invite.uid!)" class="icon trash" name="trash"></i-tabler>
         </div>
 
         <div class="mid">

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { take } from 'rxjs';
 
 import { InviteService } from 'src/app/services/invite.service';
 import Swal from 'sweetalert2';
+
+import { Firestore, collection, onSnapshot } from '@angular/fire/firestore';
+import { Invite } from 'src/app/models/invite.model';
 
 @Component({
   selector: 'app-invites-list',
@@ -10,28 +12,38 @@ import Swal from 'sweetalert2';
   styleUrls: ['./invites-list.component.scss']
 })
 export class InvitesListComponent implements OnInit {
+  fsRef: Firestore;
   iS: InviteService;
 
-  invites: any;
+  invites: Array<Invite> = [];
   loading: boolean = true;
 
-  constructor(inviteService: InviteService) {
+  constructor(firestore: Firestore, inviteService: InviteService) {
+    this.fsRef = firestore;
     this.iS = inviteService;
   }
 
   ngOnInit(): void {
-    this.invites = this.iS.invites.valueChanges();
+    this.getAll();
+  }
 
-    this.invites
-      .pipe(take(1))
-      .subscribe(() => {
-        this.loading = false;
+  getAll() {
+    const node = collection(this.fsRef, '/invites');
+
+    onSnapshot(node, (querySnapshot: any) => {
+      this.invites = [];
+
+      querySnapshot.forEach((doc: any) => {
+        this.invites.push(doc.data());
       });
+
+      this.loading = false;
+    });
   }
 
   delete(uid: string) {
     Swal.fire({
-      title: 'Deseja excluir este convite',
+      title: 'Deseja excluir este convite?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Confirmar',
@@ -42,22 +54,22 @@ export class InvitesListComponent implements OnInit {
 
         this.iS.delete(uid)
           .then(() => {
-            this.loading = false;
             Swal.fire(
               'Sucesso!',
               'Deletado com sucesso',
               'success'
             );
+
+            this.loading = false;
           })
           .catch((error) => {
-            this.loading = false;
-
             Swal.fire(
               'Erro!',
               error,
               'error'
             );
-            console.log(error);
+
+            this.loading = false;
           })
       }
     })

@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
 
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
@@ -29,8 +30,16 @@ import { ConfirmInviteComponent } from './views/confirm-invite/confirm-invite.co
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule.enablePersistence(),
+    provideFirebaseApp(() => initializeApp({
+      apiKey: "AIzaSyDueyFkwBYj-K0kFwuTgMymaiZxqb78ya8",
+      authDomain: "con-vite.firebaseapp.com",
+      databaseURL: "https://con-vite-default-rtdb.firebaseio.com",
+      projectId: "con-vite",
+      storageBucket: "con-vite.appspot.com",
+      messagingSenderId: "180932699562",
+      appId: "1:180932699562:web:44036b7c7bc2da162477d3"
+    })),
+    provideFirestore(() => getFirestore()),
     SweetAlert2Module.forRoot(),
     TablerIconsModule.pick(TablerIcons)
   ],
