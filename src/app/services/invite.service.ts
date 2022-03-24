@@ -40,4 +40,8 @@ export class InviteService {
   delete(uid: string): Promise<void> {
     return this.invites.doc<Invite>(uid).delete();
   }
+
+  confirmInvite(inviteCode: string): void {
+    return console.log(inviteCode);
+  }
 }

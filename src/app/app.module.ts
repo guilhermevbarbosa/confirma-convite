@@ -15,13 +15,15 @@ import * as TablerIcons from 'angular-tabler-icons/icons';
 import { NewInviteComponent } from './views/new-invite/new-invite.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { InvitesListComponent } from './views/invites-list/invites-list.component';
+import { ConfirmInviteComponent } from './views/confirm-invite/confirm-invite.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewInviteComponent,
     LoadingComponent,
-    InvitesListComponent
+    InvitesListComponent,
+    ConfirmInviteComponent
   ],
   imports: [
     BrowserModule,

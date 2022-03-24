@@ -1,0 +1,28 @@
+<div class="container bg-grad">
+  <div class="card-space">
+    <div class="card">
+      <div class="area-content">
+        <div class="top">
+          <h1>Gabi's 15 Party</h1>
+        </div>
+
+        <div class="mid">
+          <h2>Confirmar presença</h2>
+
+          <form>
+            <div class="input-area mod">
+              <input maxlength="5" [(ngModel)]="inviteCode" type="text" name="ccode" placeholder="Código do convite">
+              <span *ngIf="inviteCodeErrorMessage.length > 0" class="error">{{inviteCodeErrorMessage}}</span>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <a>Confirmar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-loading [isActive]="loading"></app-loading>

@@ -29,4 +29,36 @@ body {
       background-image: linear-gradient(43deg, #4158d0 0%, #c850c0 46%, #ffcc70 100%);
     }
   }
+
+  form {
+    .input-area {
+      margin-top: 30px;
+      margin-bottom: 30px;
+
+      &.mod {
+        width: calc(100% - 20px);
+      }
+
+      input,
+      select {
+        display: block;
+        width: 100%;
+        background: #cdcdcd;
+        color: #4a4a4a;
+        font-weight: 600;
+        border-radius: 40px;
+        padding: 10px;
+      }
+
+      span {
+        &.error {
+          font-size: 16px;
+          display: block;
+          color: rgb(199, 4, 4);
+          font-weight: bold;
+          margin-top: 5px;
+        }
+      }
+    }
+  }
 }

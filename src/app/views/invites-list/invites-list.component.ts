@@ -26,11 +26,10 @@ export class InvitesListComponent implements OnInit {
       .pipe(take(1))
       .subscribe(() => {
         this.loading = false;
-      })
+      });
   }
 
   delete(uid: string) {
-
     Swal.fire({
       title: 'Deseja excluir este convite',
       icon: 'warning',
