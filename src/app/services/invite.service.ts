@@ -18,7 +18,7 @@ export class InviteService {
 
   private set(): void {
     this.invites = this.db.collection<Invite>(this.CHILD_INVITES,
-      (ref: CollectionReference) => ref.orderBy('name', 'asc'));
+      (ref: CollectionReference) => ref.orderBy('name', 'desc'));
   }
 
   create(invite: Invite): Promise<void> {
@@ -34,5 +34,9 @@ export class InviteService {
 
   get(uid: string): Observable<any> {
     return this.invites.doc<Invite>(uid).valueChanges();
+  }
+
+  delete(uid: string): Promise<void> {
+    return this.invites.doc<Invite>(uid).delete();
   }
 }

@@ -31,6 +31,12 @@ h1 {
         }
       }
 
+      .top{
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+      }
+
       .icon {
         height: 40px;
         width: 40px;
@@ -41,6 +47,13 @@ h1 {
 
         &.not-checked{
           color: rgb(167, 4, 4);
+        }
+
+        &.trash{
+          height: 30px;
+          width: 30px;
+          color: red;
+          cursor: pointer;
         }
       }
     }

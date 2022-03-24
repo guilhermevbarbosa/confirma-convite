@@ -17,6 +17,7 @@ export class InvitesListComponent implements OnInit {
   constructor(inviteService: InviteService) {
     this.iS = inviteService;
   }
+
   ngOnInit(): void {
     this.invites = this.iS.invites.valueChanges();
 
@@ -27,4 +28,7 @@ export class InvitesListComponent implements OnInit {
       })
   }
 
+  delete() {
+
+  }
 }
