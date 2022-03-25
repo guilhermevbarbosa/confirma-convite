@@ -1,7 +1,16 @@
 import { Injectable } from '@angular/core';
 
-import { Firestore, doc, deleteDoc, collection, setDoc, query, where, getDoc, getDocs } from '@angular/fire/firestore';
-import { updateDoc } from 'firebase/firestore';
+import {
+  Firestore,
+  doc,
+  deleteDoc,
+  collection,
+  setDoc,
+  query,
+  where,
+  getDocs,
+  updateDoc
+} from '@angular/fire/firestore';
 
 import { Invite } from '../models/invite.model';
 

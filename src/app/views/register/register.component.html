@@ -1,0 +1,33 @@
+<div class="container bg-grad">
+  <div class="card-space">
+    <div class="card">
+      <div class="area-content">
+        <div class="top">
+          <h1>Gabi's 15 Party</h1>
+        </div>
+
+        <div class="mid">
+          <h2>Cadastrar</h2>
+
+          <form>
+            <div class="input-area mod">
+              <input [(ngModel)]="user.email" type="text" name="cnome" placeholder="E-mail">
+              <span *ngIf="inputNameErrorMessage.length > 0" class="error">{{inputNameErrorMessage}}</span>
+            </div>
+
+            <div class="input-area mod">
+              <input [(ngModel)]="user.password" type="password" name="cnome" placeholder="Senha">
+              <span *ngIf="inputNameErrorMessage.length > 0" class="error">{{inputNameErrorMessage}}</span>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <a (click)="createUser()">Cadastrar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-loading [isActive]="loading"></app-loading>
