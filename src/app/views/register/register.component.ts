@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  resetInvite() {
+  resetFields() {
     this.user.email = '';
     this.user.password = '';
   }
@@ -66,12 +66,27 @@ export class RegisterComponent implements OnInit {
     this.authService.createUserEmailPassword(this.user)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
+
+        Swal.fire(
+          'Sucesso!',
+          `Usuário de e-mail ${user.email} criado com sucesso!`,
+          'success'
+        );
+
+        this.resetFields();
+        this.loading = false;
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+
+        Swal.fire(
+          `Erro ${errorCode}`,
+          `${errorMessage}`,
+          'error'
+        );
+
+        this.loading = false;
       });
   }
 }

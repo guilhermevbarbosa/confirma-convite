@@ -8,10 +8,7 @@ import { environment } from 'src/environments/environment';
 
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import {
-  getAuth,
-  provideAuth
-} from "@angular/fire/auth";
+import { getAuth, provideAuth } from "@angular/fire/auth";
 
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { TablerIconsModule } from 'angular-tabler-icons';
