@@ -38,16 +38,17 @@ export class RegisterComponent implements OnInit {
 
   verifyFields() {
     let errors = 0;
+    const re = /\S+@\S+\.\S+/;
 
-    if (this.user.email.length < 3) {
-      this.inputNameErrorMessage = 'É necessário no mínimo 3 caracteres.';
+    if (!re.test(this.user.email)) {
+      this.inputNameErrorMessage = 'E-mail inválido.';
       errors++;
     } else {
       this.inputNameErrorMessage = '';
     }
 
-    if (this.user.password.length < 3) {
-      this.inputPassErrorMessage = 'É necessário pelo 3 caracteres.';
+    if (this.user.password.length < 6) {
+      this.inputPassErrorMessage = 'É necessário pelo menos 6 caracteres.';
       errors++;
     } else {
       this.inputPassErrorMessage = '';
@@ -80,11 +81,19 @@ export class RegisterComponent implements OnInit {
         const errorCode = error.code;
         const errorMessage = error.message;
 
-        Swal.fire(
-          `Erro ${errorCode}`,
-          `${errorMessage}`,
-          'error'
-        );
+        if (errorCode == "auth/email-already-in-use") {
+          Swal.fire(
+            "Email já utilizado.",
+            "Utilize outro e-mail para o cadastro.",
+            'error'
+          );
+        } else {
+          Swal.fire(
+            `Erro ${errorCode}`,
+            `${errorMessage}`,
+            'error'
+          );
+        }
 
         this.loading = false;
       });
