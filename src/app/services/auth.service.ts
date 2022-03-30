@@ -3,7 +3,10 @@ import { FirebaseApp } from '@angular/fire/app';
 import {
   getAuth,
   createUserWithEmailAndPassword,
-  Auth
+  Auth,
+  signOut,
+  signInWithEmailAndPassword,
+  onAuthStateChanged
 } from "@angular/fire/auth";
 
 import { User } from '../models/user.model';
@@ -20,5 +23,31 @@ export class AuthService {
 
   createUserEmailPassword(user: User) {
     return createUserWithEmailAndPassword(this.auth, user.email, user.password);
+  }
+
+  signOut() {
+    return signOut(this.auth)
+      .then(() => {
+        console.log("Deslogado");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      })
+  }
+
+  signInWithEmail(user: User) {
+    return signInWithEmailAndPassword(this.auth, user.email, user.password);
+  }
+
+  isLoggedIn(): Promise<boolean> {
+    return new Promise((resolve: any) => {
+      onAuthStateChanged(this.auth, (user: any) => {
+        if (user) {
+          resolve(true);
+        } else {
+          resolve(false);
+        }
+      });
+    });
   }
 }

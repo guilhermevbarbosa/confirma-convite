@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from "@angular/fire/auth";
+import { AuthGuardModule } from "@angular/fire/auth-guard";
 
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { TablerIconsModule } from 'angular-tabler-icons';
@@ -19,6 +20,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { InvitesListComponent } from './views/invites-list/invites-list.component';
 import { ConfirmInviteComponent } from './views/confirm-invite/confirm-invite.component';
 import { RegisterComponent } from './views/register/register.component';
+import { LoginComponent } from './views/login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { RegisterComponent } from './views/register/register.component';
     LoadingComponent,
     InvitesListComponent,
     ConfirmInviteComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,7 @@ import { RegisterComponent } from './views/register/register.component';
     FormsModule,
     SweetAlert2Module.forRoot(),
     TablerIconsModule.pick(TablerIcons),
-
+    AuthGuardModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth())
