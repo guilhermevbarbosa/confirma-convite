@@ -1,0 +1,65 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 20px);
+}
+
+.mid {
+  .text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
+
+    h1 {
+      font-size: 150px;
+      color: #ffffff;
+      font-weight: bold;
+
+      animation-name: fontWeightAnim;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    p {
+      font-size: 22px;
+      margin-top: 10px;
+      color: #ffffff;
+      font-weight: bold;
+    }
+  }
+
+  @keyframes fontWeightAnim {
+    0% {
+      font-weight: 100;
+    }
+    25% {
+      font-weight: 300;
+    }
+    50% {
+      font-weight: 600;
+    }
+    100% {
+      font-weight: bold;
+    }
+  }
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 40px;
+  width: calc(100% - 20px);
+  display: flex;
+  justify-content: center;
+
+  a {
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #ffffff;
+  }
+}

@@ -15,12 +15,17 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 
-import { NewInviteComponent } from './views/new-invite/new-invite.component';
+import { LoggedPagesLayoutComponent } from './views/logged-area/logged-pages-layout.component';
+import { NewInviteComponent } from './views/logged-area/new-invite/new-invite.component';
+import { InvitesListComponent } from './views/logged-area/invites-list/invites-list.component';
+import { RegisterComponent } from './views/logged-area/register/register.component';
+
 import { LoadingComponent } from './components/loading/loading.component';
-import { InvitesListComponent } from './views/invites-list/invites-list.component';
 import { ConfirmInviteComponent } from './views/confirm-invite/confirm-invite.component';
-import { RegisterComponent } from './views/register/register.component';
 import { LoginComponent } from './views/login/login.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { Error404Component } from './components/error404/error404.component';
+import { HomeComponent } from './views/home/home.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +35,11 @@ import { LoginComponent } from './views/login/login.component';
     InvitesListComponent,
     ConfirmInviteComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    NavbarComponent,
+    LoggedPagesLayoutComponent,
+    Error404Component,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

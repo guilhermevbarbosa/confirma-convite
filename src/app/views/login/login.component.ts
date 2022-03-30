@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.authService.isLoggedIn()
       .then((res) => {
         if (res) {
-          this.router.navigateByUrl('/convites');
+          this.router.navigateByUrl('/admin/convites');
         }
       })
       .catch((err) => {
@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
     this.authService.signInWithEmail(this.user)
       .then((cred) => {
         if (cred.user) {
-          this.router.navigateByUrl("/convites");
+          this.router.navigateByUrl("/admin/convites");
         }
       })
       .catch((error) => {
