@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { FirebaseApp } from '@angular/fire/app';
 import {
   getAuth,
@@ -8,7 +10,6 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged
 } from "@angular/fire/auth";
-
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -16,9 +17,11 @@ import { User } from '../models/user.model';
 })
 export class AuthService {
   auth: Auth;
+  router: Router;
 
-  constructor(private fApp: FirebaseApp) {
+  constructor(private fApp: FirebaseApp, router: Router) {
     this.auth = getAuth(fApp);
+    this.router = router;
   }
 
   createUserEmailPassword(user: User) {
@@ -28,7 +31,7 @@ export class AuthService {
   signOut() {
     return signOut(this.auth)
       .then(() => {
-        console.log("Deslogado");
+        this.router.navigateByUrl("/")
       })
       .catch((err) => {
         console.log(err.message);

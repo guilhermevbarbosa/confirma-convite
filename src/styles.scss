@@ -11,6 +11,7 @@
 
 body {
   font-family: "Raleway", sans-serif;
+  font-size: 16px;
 
   input,
   select {
@@ -57,6 +58,42 @@ body {
           color: rgb(199, 4, 4);
           font-weight: bold;
           margin-top: 5px;
+        }
+      }
+    }
+  }
+}
+
+$transition--length: 0.8;
+
+body.nav-active {
+  $menu--items--count: 5;
+
+  .nav {
+    visibility: visible;
+
+    &:before,
+    &:after {
+      transform: translateX(0%) translateY(0%);
+    }
+
+    &:after {
+      transition-delay: 0.1s;
+    }
+
+    &:before {
+      transition-delay: 0s;
+    }
+
+    &__list-item {
+      opacity: 1;
+      transform: translateX(0%);
+      transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+      color: #ffffff;
+
+      @for $i from 0 through $menu--items--count {
+        &:nth-child(#{$i}) {
+          transition-delay: $transition--length * $i / 8 + 0.5 + s;
         }
       }
     }

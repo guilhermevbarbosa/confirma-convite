@@ -1,1 +1,17 @@
-<p>navbar works!</p>
+<div class="menu-icon" (click)="handleMenu()">
+  <span class="menu-icon__line menu-icon__line-left"></span>
+  <span class="menu-icon__line"></span>
+  <span class="menu-icon__line menu-icon__line-right"></span>
+</div>
+
+<div class="nav">
+  <div class="nav__content">
+    <ul class="nav__list">
+      <li (click)="handleMenu()" routerLink="/" class="nav__list-item">Início</li>
+      <li (click)="handleMenu()" routerLink="/admin/convites" class="nav__list-item">Convites</li>
+      <li (click)="handleMenu()" routerLink="/admin/novo-convite" class="nav__list-item">Novo convite</li>
+      <li (click)="handleMenu()" routerLink="/admin/cadastrar" class="nav__list-item">Cadastrar</li>
+      <li (click)="logout()" class="nav__list-item">Logout</li>
+    </ul>
+  </div>
+</div>

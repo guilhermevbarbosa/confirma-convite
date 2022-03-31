@@ -1,0 +1,89 @@
+$background--color: #1e2023;
+$icon--color: #1e2023;
+$font--color: #ffffff;
+$font--color--active: #000000;
+$transition--length: 0.8;
+
+//default state
+.menu-icon {
+  $size: 30px;
+  height: $size;
+  width: $size;
+  position: fixed;
+  z-index: 2;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+
+  &__line {
+    height: 2px;
+    width: $size;
+    display: block;
+    background-color: $font--color;
+    margin-bottom: 4px;
+    transition: transform 0.2s ease, background-color 0.5s ease;
+  }
+}
+
+.nav {
+  $width: 100vw;
+  $height: 100vh;
+  $font--size--calc: calc(2vw + 10px);
+  $transition--easing: cubic-bezier(0.77, 0, 0.175, 1);
+
+  position: fixed;
+  z-index: 1;
+
+  &:before,
+  &:after {
+    content: "";
+    position: fixed;
+    width: $width;
+    height: $height;
+    background: rgba(#eaeaea, 0.2);
+    z-index: -1;
+    transition: transform $transition--easing $transition--length + s;
+    transform: translateX(0%) translateY(-100%);
+  }
+
+  &:after {
+    background-color: #4158d0;
+    background-image: linear-gradient(43deg, #4158d0 0%, #c850c0 46%, #ffcc70 100%);
+    transition-delay: 0s;
+  }
+
+  &:before {
+    transition-delay: 0.1s;
+  }
+
+  &__content {
+    position: fixed;
+    top: 50%;
+    transform: translate(0%, -50%);
+    width: 100%;
+    text-align: center;
+    font-size: $font--size--calc;
+    font-weight: 200;
+    cursor: pointer;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__list-item {
+    position: relative;
+    display: inline-block;
+    transition-delay: $transition--length + s;
+    opacity: 0;
+    transform: translate(0%, 100%);
+    transition: opacity 0.2s ease, transform 0.3s ease;
+    margin-right: 25px;
+    margin-left: 25px;
+    font-size: 36px;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
