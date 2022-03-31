@@ -72,6 +72,11 @@ body.nav-active {
   .nav {
     visibility: visible;
 
+    .nav__content {
+      position: fixed;
+      z-index: 9999;
+    }
+
     &:before,
     &:after {
       transform: translateX(0%) translateY(0%);
@@ -93,7 +98,7 @@ body.nav-active {
 
       @for $i from 0 through $menu--items--count {
         &:nth-child(#{$i}) {
-          transition-delay: $transition--length * $i / 8 + 0.5 + s;
+          transition-delay: calc(($transition--length * $i) / 8) + 0.5 + s;
         }
       }
     }

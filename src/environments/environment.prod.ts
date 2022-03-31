@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: "AIzaSyAU6dVxZgnK6h75W9_payXNZdcFJl4xHc8",
-    authDomain: "convite-prod.firebaseapp.com",
-    projectId: "convite-prod",
-    storageBucket: "convite-prod.appspot.com",
-    messagingSenderId: "235461613366",
-    appId: "1:235461613366:web:f16d9ea66c7fbfb40b0597"
+    apiKey: "AIzaSyBFAp2tdCDQnPUUH-M8tOXuZVevGl6pGes",
+    authDomain: "festa-gabi.firebaseapp.com",
+    projectId: "festa-gabi",
+    storageBucket: "festa-gabi.appspot.com",
+    messagingSenderId: "495339760063",
+    appId: "1:495339760063:web:f82880eb5dc9827d1f990a"
   }
 };
