@@ -6,6 +6,27 @@ h1 {
   margin-bottom: 40px;
 }
 
+.data-status {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 15px;
+  }
+
+  h3 {
+    display: block;
+    margin-bottom: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
 .invites {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -31,7 +52,7 @@ h1 {
         }
       }
 
-      .top{
+      .top {
         display: flex;
         justify-content: flex-end;
         margin-bottom: 10px;
@@ -45,11 +66,11 @@ h1 {
           color: rgb(15, 114, 15);
         }
 
-        &.not-checked{
+        &.not-checked {
           color: rgb(167, 4, 4);
         }
 
-        &.trash{
+        &.trash {
           height: 30px;
           width: 30px;
           color: red;

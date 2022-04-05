@@ -15,8 +15,13 @@ export class InvitesListComponent implements OnInit {
   fsRef: Firestore;
   iS: InviteService;
 
-  invites: Array<Invite> = [];
   loading: boolean = true;
+  invites: Array<Invite> = [];
+
+  filteredConfirmedInvites: Array<Invite> = [];
+  confirmedInvitesNumber = 0;
+  totalInvitedGuests = 0;
+  totalInvitedConfirmedGuests = 0;
 
   constructor(firestore: Firestore, inviteService: InviteService) {
     this.fsRef = firestore;
@@ -25,6 +30,29 @@ export class InvitesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAll();
+  }
+
+  filterConfirmeds() {
+    this.filteredConfirmedInvites = this.invites.filter(invite => (invite.confirmed));
+    this.confirmedInvitesNumber = this.filteredConfirmedInvites.length;
+  }
+
+  countTotalGuests() {
+    this.totalInvitedGuests = this.invites.reduce((valor, item) => {
+      return (Number(valor) + Number(item.amount));
+    }, 0);
+  }
+
+  countTotalConfirmedGuests() {
+    this.totalInvitedConfirmedGuests = this.filteredConfirmedInvites.reduce((valor, item) => {
+      return (Number(valor) + Number(item.amount));
+    }, 0);
+  }
+
+  handleCountFunctions() {
+    this.filterConfirmeds();
+    this.countTotalGuests();
+    this.countTotalConfirmedGuests();
   }
 
   getAll() {
@@ -37,6 +65,7 @@ export class InvitesListComponent implements OnInit {
         this.invites.push(doc.data());
       });
 
+      this.handleCountFunctions();
       this.loading = false;
     });
   }

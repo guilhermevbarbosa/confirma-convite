@@ -1,6 +1,20 @@
 <div class="container bg-grad">
   <h1>Convites</h1>
 
+  <div class="data-status">
+    <div>
+      <p class="title">Convites</p>
+      <h3>Total: {{ invites.length }}</h3>
+      <h3>Confirmados: {{ confirmedInvitesNumber }}</h3>
+    </div>
+
+    <div>
+      <p class="title">Convidados</p>
+      <h3>Total: {{ totalInvitedGuests }}</h3>
+      <h3>Confirmados: {{ totalInvitedConfirmedGuests }}</h3>
+    </div>
+  </div>
+
   <div class="invites">
     <div *ngFor="let invite of invites" class="card">
       <div class="content">
