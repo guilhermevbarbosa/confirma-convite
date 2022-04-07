@@ -3,7 +3,19 @@ import { Component, OnInit } from '@angular/core';
 import { InviteService } from 'src/app/services/invite.service';
 import Swal from 'sweetalert2';
 
-import { Firestore, collection, onSnapshot } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collection,
+  onSnapshot,
+  query,
+  orderBy,
+  limit,
+  startAfter,
+  DocumentData,
+  Query,
+  CollectionReference,
+  endAt
+} from '@angular/fire/firestore';
 import { Invite } from 'src/app/models/invite.model';
 
 @Component({
@@ -14,31 +26,51 @@ import { Invite } from 'src/app/models/invite.model';
 export class InvitesListComponent implements OnInit {
   fsRef: Firestore;
   iS: InviteService;
+  node: CollectionReference;
 
   loading: boolean = true;
-  invites: Array<Invite> = [];
 
+  allInvitesNoFilter: Array<Invite> = [];
   filteredConfirmedInvites: Array<Invite> = [];
   confirmedInvitesNumber = 0;
   totalInvitedGuests = 0;
   totalInvitedConfirmedGuests = 0;
 
+  invitesItensWithPagination: Array<Invite> = [];
+  lastVisibleCard: any;
+  cardsInPage = 4;
+
   constructor(firestore: Firestore, inviteService: InviteService) {
     this.fsRef = firestore;
     this.iS = inviteService;
+    this.node = collection(this.fsRef, '/invites');
   }
 
   ngOnInit(): void {
-    this.getAll();
+    this.getAllToCountFunctions();
+    this.getPagination();
+  }
+
+  getAllToCountFunctions() {
+    onSnapshot(this.node, (snapshot: any) => {
+      this.allInvitesNoFilter = [];
+
+      snapshot.forEach((doc: any) => {
+        this.allInvitesNoFilter.push(doc.data());
+      });
+
+      this.handleCountFunctions();
+      this.loading = false;
+    });
   }
 
   filterConfirmeds() {
-    this.filteredConfirmedInvites = this.invites.filter(invite => (invite.confirmed));
+    this.filteredConfirmedInvites = this.allInvitesNoFilter.filter(invite => (invite.confirmed));
     this.confirmedInvitesNumber = this.filteredConfirmedInvites.length;
   }
 
   countTotalGuests() {
-    this.totalInvitedGuests = this.invites.reduce((valor, item) => {
+    this.totalInvitedGuests = this.allInvitesNoFilter.reduce((valor, item) => {
       return (Number(valor) + Number(item.amount));
     }, 0);
   }
@@ -55,19 +87,32 @@ export class InvitesListComponent implements OnInit {
     this.countTotalConfirmedGuests();
   }
 
-  getAll() {
-    const node = collection(this.fsRef, '/invites');
+  private realTimeSearchToPaginate(queryTerm: Query<DocumentData>) {
+    onSnapshot(queryTerm, (snapshot: any) => {
+      if (snapshot.docs.length > 0) {
+        this.lastVisibleCard = snapshot.docs[snapshot.docs.length - 1];
+        this.invitesItensWithPagination = [];
 
-    onSnapshot(node, (snapshot: any) => {
-      this.invites = [];
-
-      snapshot.forEach((doc: any) => {
-        this.invites.push(doc.data());
-      });
-
-      this.handleCountFunctions();
-      this.loading = false;
+        snapshot.forEach((doc: any) => {
+          this.invitesItensWithPagination.push(doc.data());
+        });
+      }
     });
+  }
+
+  getPagination() {
+    const q = query(this.node, orderBy("name"), limit(this.cardsInPage));
+    this.realTimeSearchToPaginate(q);
+  }
+
+  nextPage() {
+    const next = query(this.node, orderBy("name"), startAfter(this.lastVisibleCard), limit(this.cardsInPage));
+    this.realTimeSearchToPaginate(next);
+  }
+
+  previousPage() {
+    const previous = query(this.node, orderBy("name"), endAt(this.lastVisibleCard), limit(this.cardsInPage));
+    this.realTimeSearchToPaginate(previous);
   }
 
   delete(uid: string) {
