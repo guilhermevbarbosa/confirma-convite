@@ -104,3 +104,53 @@ body.nav-active {
     }
   }
 }
+
+.custom-pagination {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+
+  .icon {
+    color: #ffffff;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+
+    &.disabled {
+      color: rgb(255 255 255 / 30%);
+      cursor: default;
+    }
+  }
+
+  .index {
+    &.current {
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        position: relative;
+        z-index: 1;
+
+        &::before {
+          content: "";
+          background-color: #4158d0;
+          background-image: linear-gradient(43deg, #4158d0 0%, #c850c0 46%, #ffcc70 100%);
+          position: absolute;
+          height: 30px;
+          width: 100%;
+          z-index: -1;
+          border-radius: 40px;
+        }
+      }
+    }
+
+    span {
+      cursor: pointer;
+      padding: 10px;
+      color: #ffffff;
+      font-size: 20px;
+    }
+  }
+}

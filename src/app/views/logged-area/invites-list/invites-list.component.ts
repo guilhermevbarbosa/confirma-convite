@@ -7,16 +7,10 @@ import {
   Firestore,
   collection,
   onSnapshot,
-  query,
-  orderBy,
-  limit,
-  startAfter,
-  DocumentData,
-  Query,
-  CollectionReference,
-  endAt
+  CollectionReference
 } from '@angular/fire/firestore';
 import { Invite } from 'src/app/models/invite.model';
+import { PaginationInstance } from '../../../../../node_modules/ngx-pagination/dist/ngx-pagination.module';
 
 @Component({
   selector: 'app-invites-list',
@@ -30,15 +24,20 @@ export class InvitesListComponent implements OnInit {
 
   loading: boolean = true;
 
-  allInvitesNoFilter: Array<Invite> = [];
+  allInvites: Array<Invite> = [];
+
   filteredConfirmedInvites: Array<Invite> = [];
   confirmedInvitesNumber = 0;
   totalInvitedGuests = 0;
   totalInvitedConfirmedGuests = 0;
 
-  invitesItensWithPagination: Array<Invite> = [];
-  lastVisibleCard: any;
-  cardsInPage = 4;
+  paginationId = 'custom-pagination'!;
+
+  public config: PaginationInstance = {
+    id: this.paginationId,
+    itemsPerPage: 6,
+    currentPage: 1
+  };
 
   constructor(firestore: Firestore, inviteService: InviteService) {
     this.fsRef = firestore;
@@ -47,16 +46,15 @@ export class InvitesListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllToCountFunctions();
-    this.getPagination();
+    this.getAllInvites();
   }
 
-  getAllToCountFunctions() {
+  getAllInvites() {
     onSnapshot(this.node, (snapshot: any) => {
-      this.allInvitesNoFilter = [];
+      this.allInvites = [];
 
       snapshot.forEach((doc: any) => {
-        this.allInvitesNoFilter.push(doc.data());
+        this.allInvites.push(doc.data());
       });
 
       this.handleCountFunctions();
@@ -65,12 +63,12 @@ export class InvitesListComponent implements OnInit {
   }
 
   filterConfirmeds() {
-    this.filteredConfirmedInvites = this.allInvitesNoFilter.filter(invite => (invite.confirmed));
+    this.filteredConfirmedInvites = this.allInvites.filter(invite => (invite.confirmed));
     this.confirmedInvitesNumber = this.filteredConfirmedInvites.length;
   }
 
   countTotalGuests() {
-    this.totalInvitedGuests = this.allInvitesNoFilter.reduce((valor, item) => {
+    this.totalInvitedGuests = this.allInvites.reduce((valor, item) => {
       return (Number(valor) + Number(item.amount));
     }, 0);
   }
@@ -85,34 +83,6 @@ export class InvitesListComponent implements OnInit {
     this.filterConfirmeds();
     this.countTotalGuests();
     this.countTotalConfirmedGuests();
-  }
-
-  private realTimeSearchToPaginate(queryTerm: Query<DocumentData>) {
-    onSnapshot(queryTerm, (snapshot: any) => {
-      if (snapshot.docs.length > 0) {
-        this.lastVisibleCard = snapshot.docs[snapshot.docs.length - 1];
-        this.invitesItensWithPagination = [];
-
-        snapshot.forEach((doc: any) => {
-          this.invitesItensWithPagination.push(doc.data());
-        });
-      }
-    });
-  }
-
-  getPagination() {
-    const q = query(this.node, orderBy("name"), limit(this.cardsInPage));
-    this.realTimeSearchToPaginate(q);
-  }
-
-  nextPage() {
-    const next = query(this.node, orderBy("name"), startAfter(this.lastVisibleCard), limit(this.cardsInPage));
-    this.realTimeSearchToPaginate(next);
-  }
-
-  previousPage() {
-    const previous = query(this.node, orderBy("name"), endAt(this.lastVisibleCard), limit(this.cardsInPage));
-    this.realTimeSearchToPaginate(previous);
   }
 
   delete(uid: string) {

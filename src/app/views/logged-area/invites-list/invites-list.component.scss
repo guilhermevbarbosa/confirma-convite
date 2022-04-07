@@ -27,64 +27,89 @@ h1 {
   }
 }
 
-.invites {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 30px;
+.invites-space {
+  @media (min-width: 992px) {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
 
-  .card {
-    background: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 100ms ease-in-out;
-    border-radius: 4px;
-    max-width: 350px;
-    cursor: default;
+  .invites {
+    width: 100%;
+    display: grid;
+    row-gap: 30px;
+    column-gap: 10px;
+    justify-content: center;
+    justify-items: center;
 
-    .content {
-      p {
-        font-size: 16px;
-        margin-bottom: 20px;
+    grid-template-columns: repeat(3, minmax(33.33%, 1fr));
 
-        span {
-          font-weight: bold;
-          display: block;
-          margin-bottom: 5px;
-        }
+    @media (max-width: 991px) {
+      grid-template-columns: repeat(2, minmax(50%, 1fr));
+    }
+
+    .card {
+      background: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: transform 100ms ease-in-out;
+      border-radius: 4px;
+      cursor: default;
+
+      width: calc(100% - 20px);
+
+      @media (min-width: 992px) {
+        max-width: 300px;
       }
 
-      .top {
-        display: flex;
-        justify-content: flex-end;
-        margin-bottom: 10px;
-      }
+      .content {
+        p {
+          font-size: 16px;
+          margin-bottom: 20px;
 
-      .icon {
-        height: 40px;
-        width: 40px;
-
-        &.checked {
-          color: rgb(15, 114, 15);
+          span {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+          }
         }
 
-        &.not-checked {
-          color: rgb(167, 4, 4);
+        .top {
+          display: flex;
+          justify-content: flex-end;
+          margin-bottom: 10px;
         }
 
-        &.trash {
-          height: 30px;
-          width: 30px;
-          color: red;
-          cursor: pointer;
+        .icon {
+          height: 40px;
+          width: 40px;
+
+          &.checked {
+            color: rgb(15, 114, 15);
+          }
+
+          &.not-checked {
+            color: rgb(167, 4, 4);
+          }
+
+          &.trash {
+            height: 30px;
+            width: 30px;
+            color: red;
+            cursor: pointer;
+          }
         }
       }
     }
-  }
 
-  .card:hover {
-    transform: scale(1.05);
-  }
+    .card:hover {
+      transform: scale(1.05);
+    }
 
-  .content {
-    padding: 30px;
+    .content {
+      padding: 30px;
+    }
   }
 }

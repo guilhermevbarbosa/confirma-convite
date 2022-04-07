@@ -22,6 +22,7 @@
     "@sweetalert2/ngx-sweetalert2": "^11.0.0",
     "angular-tabler-icons": "^1.58.0",
     "firebase": "^9.6.9",
+    "ngx-pagination": "^5.1.1",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.4.6",
     "tslib": "^2.3.0",

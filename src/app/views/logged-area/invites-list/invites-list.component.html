@@ -4,7 +4,7 @@
   <div class="data-status">
     <div>
       <p class="title">Convites</p>
-      <h3>Total: {{ allInvitesNoFilter.length }}</h3>
+      <h3>Total: {{ allInvites.length }}</h3>
       <h3>Confirmados: {{ confirmedInvitesNumber }}</h3>
     </div>
 
@@ -15,38 +15,55 @@
     </div>
   </div>
 
-  <div class="invites">
-    <div *ngFor="let invite of invitesItensWithPagination" class="card">
-      <div class="content">
-        <div class="top">
-          <i-tabler (click)="delete(invite.uid!)" class="icon trash" name="trash"></i-tabler>
-        </div>
+  <div class="invites-space">
+    <div class="invites">
+      <div *ngFor="let invite of allInvites | paginate: config" class=" card">
+        <div class="content">
+          <div class="top">
+            <i-tabler (click)="delete(invite.uid!)" class="icon trash" name="trash"></i-tabler>
+          </div>
 
-        <div class="mid">
-          <p class="data">
-            <span>Nome</span>
-            {{ invite.name }}
-          </p>
+          <div class="mid">
+            <p class="data">
+              <span>Nome</span>
+              {{ invite.name }}
+            </p>
 
-          <p class="data">
-            <span>N. convidados</span>
-            {{ invite.amount }}
-          </p>
+            <p class="data">
+              <span>N. convidados</span>
+              {{ invite.amount }}
+            </p>
 
-          <p class="data">
-            <span>Código</span>
-            {{ invite.code }}
-          </p>
+            <p class="data">
+              <span>Código</span>
+              {{ invite.code }}
+            </p>
 
-          <i-tabler *ngIf="invite.confirmed" class="icon checked" name="circle-check"></i-tabler>
-          <i-tabler *ngIf="!invite.confirmed" class="icon not-checked" name="x"></i-tabler>
+            <i-tabler *ngIf="invite.confirmed" class="icon checked" name="circle-check"></i-tabler>
+            <i-tabler *ngIf="!invite.confirmed" class="icon not-checked" name="x"></i-tabler>
+          </div>
         </div>
       </div>
     </div>
 
-    <br>
-    <h1 (click)="previousPage()">Previous</h1>
-    <h1 (click)="nextPage()">Next</h1>
+    <pagination-template #p="paginationApi" [id]="paginationId" (pageChange)="config.currentPage = $event">
+      <div class="custom-pagination">
+        <i-tabler (click)="p.previous()" [class.disabled]="p.isFirstPage()" class="icon" name="chevron-left"></i-tabler>
+
+        <div *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value" class="index">
+          <a (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
+            <span>{{ page.label }}</span>
+          </a>
+
+          <div *ngIf="p.getCurrent() === page.value">
+            <span>{{ page.label }}</span>
+          </div>
+        </div>
+
+        <i-tabler (click)="p.next()" [class.disabled]="p.isLastPage()" class="icon" name="chevron-right"></i-tabler>
+      </div>
+
+    </pagination-template>
   </div>
 </div>
 
