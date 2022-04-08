@@ -60,7 +60,8 @@
           </div>
         </div>
 
-        <i-tabler (click)="p.next()" [class.disabled]="p.isLastPage()" class="icon" name="chevron-right"></i-tabler>
+        <i-tabler *ngIf="p.isLastPage()" class="icon disabled" name="chevron-right"></i-tabler>
+        <i-tabler *ngIf="!p.isLastPage()" (click)="p.next()" class="icon" name="chevron-right"></i-tabler>
       </div>
 
     </pagination-template>

@@ -51,17 +51,17 @@ export class InviteService {
     const q: any = query(this.collectionRef, where("code", "==", inviteCode));
 
     const docSnap = await getDocs(q);
-    docSnap.forEach((doc) => {
-      searchedInvite = doc.data();
+    docSnap.forEach((responseDoc) => {
+      searchedInvite = responseDoc.data();
       searchedInviteUid = searchedInvite.uid;
     });
 
     if (searchedInvite == undefined) {
-      throw "Código inválido";
+      throw new Error("Código inválido");
     }
 
     if (searchedInvite.confirmed) {
-      throw "Convite já confirmado";
+      throw new Error("Convite já confirmado");
     } else {
       const document = doc(this.collectionRef, searchedInviteUid);
       return updateDoc(document, {

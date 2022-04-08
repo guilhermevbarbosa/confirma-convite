@@ -43,9 +43,12 @@ export class ConfirmInviteComponent implements OnInit {
         }).catch((error) => {
           this.loading = false;
 
+          let errString = String(error);
+          errString = errString.replace("Error:", "");
+
           Swal.fire(
             'Erro!',
-            error,
+            errString,
             'error'
           );
         })
