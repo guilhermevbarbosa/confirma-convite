@@ -47,7 +47,7 @@
     </div>
 
     <pagination-template #p="paginationApi" [id]="paginationId" (pageChange)="config.currentPage = $event">
-      <div class="custom-pagination">
+      <div *ngIf="allInvites.length > config.itemsPerPage" class="custom-pagination">
         <i-tabler (click)="p.previous()" [class.disabled]="p.isFirstPage()" class="icon" name="chevron-left"></i-tabler>
 
         <div *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value" class="index">
@@ -63,7 +63,6 @@
         <i-tabler *ngIf="p.isLastPage()" class="icon disabled" name="chevron-right"></i-tabler>
         <i-tabler *ngIf="!p.isLastPage()" (click)="p.next()" class="icon" name="chevron-right"></i-tabler>
       </div>
-
     </pagination-template>
   </div>
 </div>
