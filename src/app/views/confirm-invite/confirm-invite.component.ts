@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
   templateUrl: './confirm-invite.component.html',
   styleUrls: ['./confirm-invite.component.scss']
 })
-export class ConfirmInviteComponent implements OnInit {
+export class ConfirmInviteComponent {
   iS: InviteService;
 
   loading = false;
@@ -21,9 +21,6 @@ export class ConfirmInviteComponent implements OnInit {
     this.iS = inviteService;
   }
 
-  ngOnInit(): void {
-  }
-
   activateInvite() {
     if (this.inviteCode.length < 5) {
       this.inviteCodeErrorMessage = "O código deve ter 5 caracteres.";
@@ -34,12 +31,6 @@ export class ConfirmInviteComponent implements OnInit {
       this.iS.activateInvite(this.inviteCode)
         .then(() => {
           this.loading = false;
-
-          Swal.fire(
-            'Que legal!',
-            'Presença confirmada com sucesso',
-            'success'
-          );
         }).catch((error) => {
           this.loading = false;
 

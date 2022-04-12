@@ -9,8 +9,10 @@ import {
   query,
   where,
   getDocs,
-  updateDoc
+  updateDoc,
+  getDoc
 } from '@angular/fire/firestore';
+import Swal from 'sweetalert2';
 
 import { Invite } from '../models/invite.model';
 
@@ -64,8 +66,34 @@ export class InviteService {
       throw new Error("Convite já confirmado");
     } else {
       const document = doc(this.collectionRef, searchedInviteUid);
-      return updateDoc(document, {
-        confirmed: true
+
+      const documentData = await getDoc(document);
+      const docSnapData: any = documentData.data();
+
+      Swal.fire({
+        title: 'Atenção!',
+        icon: 'info',
+        html:
+          `Deseja confirmar esse convite? <br><br>` +
+          `Ele dá acesso a festa a ` +
+          `<strong style="font-size: 30px">${docSnapData.amount}</strong> convidados.`,
+        showCancelButton: true,
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Cancelar',
+      }).then((result) => {
+        if (result['isConfirmed']) {
+          updateDoc(document, {
+            confirmed: true
+          }).then(() => {
+            Swal.fire(
+              'Que legal!',
+              'Presença confirmada com sucesso',
+              'success'
+            );
+          }).catch((e) => {
+            throw new Error(e);
+          })
+        }
       })
     }
   }
