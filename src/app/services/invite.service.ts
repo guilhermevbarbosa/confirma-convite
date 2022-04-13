@@ -67,16 +67,13 @@ export class InviteService {
     } else {
       const document = doc(this.collectionRef, searchedInviteUid);
 
-      const documentData = await getDoc(document);
-      const docSnapData: any = documentData.data();
-
       Swal.fire({
         title: 'Atenção!',
         icon: 'info',
         html:
           `Deseja confirmar esse convite? <br><br>` +
           `Ele dá acesso a festa a ` +
-          `<strong style="font-size: 30px">${docSnapData.amount}</strong> convidados.`,
+          `<strong style="font-size: 30px">${searchedInvite.amount}</strong> convidados.`,
         showCancelButton: true,
         confirmButtonText: 'Confirmar',
         cancelButtonText: 'Cancelar',
