@@ -11,6 +11,7 @@ import {
 } from '@angular/fire/firestore';
 import { Invite } from 'src/app/models/invite.model';
 import { PaginationInstance } from '../../../../../node_modules/ngx-pagination/dist/ngx-pagination.module';
+import { ExcelService } from 'src/app/services/excel.service';
 
 @Component({
   selector: 'app-invites-list',
@@ -25,13 +26,15 @@ export class InvitesListComponent implements OnInit {
   loading: boolean = true;
 
   allInvites: Array<Invite> = [];
-
   filteredConfirmedInvites: Array<Invite> = [];
+
   confirmedInvitesNumber = 0;
   totalInvitedGuests = 0;
   totalInvitedConfirmedGuests = 0;
 
-  paginationId = 'custom-pagination'!;
+  paginationId = 'custom-pagination';
+
+  excelService: ExcelService;
 
   public config: PaginationInstance = {
     id: this.paginationId,
@@ -39,10 +42,11 @@ export class InvitesListComponent implements OnInit {
     currentPage: 1
   };
 
-  constructor(firestore: Firestore, inviteService: InviteService) {
+  constructor(firestore: Firestore, inviteService: InviteService, exS: ExcelService) {
     this.fsRef = firestore;
     this.iS = inviteService;
     this.node = collection(this.fsRef, '/invites');
+    this.excelService = exS;
   }
 
   ngOnInit(): void {
@@ -117,5 +121,9 @@ export class InvitesListComponent implements OnInit {
           })
       }
     })
+  }
+
+  exportToExcel() {
+    this.excelService.exportToExcel(this.allInvites, "convidados");
   }
 }

@@ -33,6 +33,7 @@ $transition--length: 0.8;
 
   position: fixed;
   z-index: 2;
+  visibility: hidden;
 
   &:before,
   &:after {
