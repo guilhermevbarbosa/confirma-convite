@@ -61,6 +61,8 @@ export class InvitesListComponent implements OnInit {
         this.allInvites.push(doc.data());
       });
 
+      this.allInvites.sort(this.alphabeticalOrder)
+
       this.handleCountFunctions();
       this.loading = false;
     });
@@ -87,6 +89,15 @@ export class InvitesListComponent implements OnInit {
     this.filterConfirmeds();
     this.countTotalGuests();
     this.countTotalConfirmedGuests();
+  }
+
+  alphabeticalOrder(x: Invite, y: Invite) {
+    let a = x.name.toLowerCase();
+    let b = y.name.toLowerCase();
+
+    if (a == b) return 0;
+    if (a > b) return 1;
+    return -1;
   }
 
   delete(uid: string) {
@@ -124,6 +135,7 @@ export class InvitesListComponent implements OnInit {
   }
 
   exportToExcel() {
+    let excelExportObject = [];
     this.excelService.exportToExcel(this.allInvites, "convidados");
   }
 }
