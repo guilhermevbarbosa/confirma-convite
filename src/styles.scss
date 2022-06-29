@@ -9,6 +9,10 @@
   border: 0;
 }
 
+.noscroll {
+  overflow: hidden;
+}
+
 body {
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
@@ -182,4 +186,8 @@ a {
       width: calc(100% - 80px);
     }
   }
+}
+
+.purple-bg {
+  background-color: #c89dff;
 }

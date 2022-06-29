@@ -1,0 +1,102 @@
+.container {
+  display: flex;
+  justify-content: center;
+
+  .limiter-area {
+    width: 800px;
+    max-width: 50%;
+
+    @media (max-width: 767px) {
+      max-width: none;
+      width: 100%;
+    }
+
+    .logo-area {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+
+      em {
+        background-image: url(../../../assets/cardapio/cardapio-logo.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        display: block;
+
+        width: 329px;
+        height: 170px;
+      }
+    }
+
+    .foods-area {
+      .line {
+        width: 100%;
+        margin-top: 30px;
+
+        .title {
+          background-color: #959f62;
+          padding: 10px;
+          border-radius: 6px;
+          z-index: 2;
+          position: relative;
+
+          p {
+            color: #ffffff;
+            font-size: 1.125rem;
+            font-weight: 600;
+          }
+        }
+
+        .content {
+          background: #ffffff;
+          padding: 10px;
+          margin-top: -10px;
+          z-index: 1;
+          position: relative;
+          padding-top: 20px;
+          border-radius: 6px;
+
+          .title-txt {
+            margin-bottom: 5px;
+          }
+
+          .flex-item {
+            display: flex;
+            align-items: center;
+
+            position: relative;
+            padding-left: 8px;
+            margin-bottom: 10px;
+
+            &:last-of-type {
+              margin: 0;
+            }
+
+            &::after {
+              content: "";
+              height: 4px;
+              width: 4px;
+              position: absolute;
+              left: 0;
+              background: #959f62;
+              border-radius: 24px;
+            }
+          }
+
+          p {
+            font-size: 1rem;
+            color: #000000;
+            font-weight: 500;
+
+            span {
+              display: block;
+              margin-top: 5px;
+              font-size: 0.9375rem;
+              font-weight: 400;
+              color: #afafaf;
+            }
+          }
+        }
+      }
+    }
+  }
+}

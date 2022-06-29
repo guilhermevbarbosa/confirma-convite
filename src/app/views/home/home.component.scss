@@ -3,7 +3,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     display: block;
-    position: absolute;
+    position: fixed;
 
     &.flower-top {
       background-image: url(../../../assets/convite/svg/flower-top.svg);
@@ -133,20 +133,6 @@
 
     @media (max-width: 767px) {
       width: 100%;
-    }
-
-    a {
-      padding: 12px 40px;
-      text-align: center;
-      text-decoration: none;
-      color: #ffffff;
-      background: #975d55;
-      border-radius: 6px;
-      display: block;
-
-      @media (max-width: 767px) {
-        width: calc(100% - 80px);
-      }
     }
   }
 }
