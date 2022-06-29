@@ -21,17 +21,6 @@
     flex-direction: column;
     justify-content: space-between;
 
-    .top {
-      display: flex;
-      justify-content: center;
-      border-bottom: 2px solid #878787;
-
-      h1 {
-        padding: 20px;
-        font-size: 1.375rem;
-      }
-    }
-
     .mid {
       padding: 15px 20px 0px 20px;
 
@@ -44,19 +33,6 @@
       padding: 20px;
       display: flex;
       justify-content: flex-end;
-
-      a {
-        text-decoration: none;
-        background-color: #4158d0;
-        padding: 10px;
-        color: #ffffff;
-        font-weight: 600;
-        -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 4px;
-        cursor: pointer;
-      }
     }
   }
 }

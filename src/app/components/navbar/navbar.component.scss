@@ -1,6 +1,6 @@
 $background--color: #1e2023;
 $icon--color: #1e2023;
-$font--color: #ffffff;
+$font--color: #000000;
 $font--color--active: #000000;
 $transition--length: 0.8;
 
@@ -48,9 +48,10 @@ $transition--length: 0.8;
   }
 
   &:after {
-    background-color: #4158d0;
-    background-image: linear-gradient(43deg, #4158d0 0%, #c850c0 46%, #ffcc70 100%);
-    transition-delay: 0s;
+    background-image: url(../../../assets/convite/bg-convite.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition-delay: 1s;
   }
 
   &:before {

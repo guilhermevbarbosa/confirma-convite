@@ -28,6 +28,8 @@ body {
 
     &.bg-grad {
       background-image: url(./assets/convite/bg-convite.png);
+      background-size: cover;
+      background-repeat: no-repeat;
     }
   }
 
@@ -95,7 +97,7 @@ body.nav-active {
       opacity: 1;
       transform: translateX(0%);
       transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
-      color: #ffffff;
+      color: #000000;
 
       @for $i from 0 through $menu--items--count {
         &:nth-child(#{$i}) {
