@@ -140,7 +140,7 @@ export class InvitesListComponent implements OnInit {
   }
 
   copyLink(inviteCode: string | undefined) {
-    let site = `https://festa-gabi.web.app/?inviteCode=${inviteCode}`;
+    let site = `https://festa-gabi.web.app/#/?inviteCode=${inviteCode}`;
     navigator.clipboard.writeText(site);
   }
 }
