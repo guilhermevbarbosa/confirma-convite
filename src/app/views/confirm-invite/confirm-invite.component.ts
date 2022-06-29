@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { InviteService } from 'src/app/services/invite.service';
 import Swal from 'sweetalert2';
@@ -8,17 +9,21 @@ import Swal from 'sweetalert2';
   templateUrl: './confirm-invite.component.html',
   styleUrls: ['./confirm-invite.component.scss']
 })
-export class ConfirmInviteComponent {
+export class ConfirmInviteComponent implements OnInit {
   iS: InviteService;
+  route: any;
 
   loading = false;
   inviteCode = '';
   inviteCodeErrorMessage = '';
 
-  invite: any;
-
-  constructor(inviteService: InviteService) {
+  constructor(inviteService: InviteService, route: ActivatedRoute) {
     this.iS = inviteService;
+    this.route = route;
+  }
+
+  ngOnInit() {
+    this.inviteCode = this.route.snapshot.queryParamMap.get("inviteCode");
   }
 
   activateInvite() {

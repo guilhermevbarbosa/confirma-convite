@@ -41,6 +41,10 @@
               {{ invite.code }}
             </p>
 
+            <p *ngIf="!invite.confirmed" class="data">
+              <a (click)="copyLink(invite.code)" class="red-button">Copiar link</a>
+            </p>
+
             <i-tabler *ngIf="invite.confirmed" class="icon checked" name="circle-check"></i-tabler>
             <i-tabler *ngIf="!invite.confirmed" class="icon not-checked" name="x"></i-tabler>
           </div>

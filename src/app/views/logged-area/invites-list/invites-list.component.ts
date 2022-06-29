@@ -138,4 +138,9 @@ export class InvitesListComponent implements OnInit {
     let excelExportObject = [];
     this.excelService.exportToExcel(this.allInvites, "convidados");
   }
+
+  copyLink(inviteCode: string | undefined) {
+    let site = `https://festa-gabi.web.app/?inviteCode=${inviteCode}`;
+    navigator.clipboard.writeText(site);
+  }
 }

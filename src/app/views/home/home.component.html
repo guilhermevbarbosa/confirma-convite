@@ -27,8 +27,8 @@
       </div>
     </div>
 
-    <div class="button-container">
-      <a class="red-button" routerLink="/confirmar">Confirmar presença</a>
+    <div *ngIf="inviteCode" class="button-container">
+      <a class="red-button" (click)="activateInvite()">Confirmar presença</a>
     </div>
   </div>
 </div>
