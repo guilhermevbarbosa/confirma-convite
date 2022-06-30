@@ -1,92 +1,145 @@
-$background--color: #1e2023;
-$icon--color: #1e2023;
-$font--color: #000000;
-$font--color--active: #000000;
-$transition--length: 0.8;
+.sidebar-hamburger-container {
+  width: 56px;
+  height: 56px;
 
-//default state
-.menu-icon {
-  $size: 30px;
-  height: $size;
-  width: $size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
   position: fixed;
-  z-index: 3;
-  right: 20px;
-  top: 20px;
+  top: calc(112px / 2);
+  right: 32px;
+  transform: translateY(-50%);
+  z-index: 1001;
+  background: #975d55;
+  border-radius: 28px;
   cursor: pointer;
 
-  &__line {
-    height: 2px;
-    width: $size;
+  -webkit-box-shadow: 5px 5px 15px -6px #000000;
+  box-shadow: 5px 5px 15px -6px #000000;
+  transition: right 0.6s ease;
+  animation: fadeIn 3s;
+
+  &:before,
+  &:after,
+  div {
+    content: "";
     display: block;
-    background-color: $font--color;
-    margin-bottom: 4px;
-    transition: transform 0.2s ease, background-color 0.5s ease;
+    width: 16px;
+    height: 2px;
+    background: #fff;
+    margin: 2.5px 0;
+    border-radius: 3px;
+    transition: transform 0.6s ease;
+  }
+
+  &.sidebar-container--opened {
+    right: 0px;
+    -webkit-box-shadow: 5px 5px 15px -6px transparent;
+    box-shadow: 5px 5px 15px -6px transparent;
+
+    &:before {
+      transform: translateY(8px) rotate(135deg);
+    }
+
+    &:after {
+      transform: translateY(-6px) rotate(-135deg);
+    }
+
+    div {
+      transform: scale(0);
+    }
   }
 }
 
-.nav {
-  $width: 100vw;
-  $height: 100vh;
-  $font--size--calc: calc(2vw + 10px);
-  $transition--easing: cubic-bezier(0.77, 0, 0.175, 1);
+.sidebar-container {
+  width: 268px;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 
   position: fixed;
-  z-index: 2;
-  visibility: hidden;
+  top: 0px;
+  right: -268px;
 
-  &:before,
-  &:after {
-    content: "";
-    position: fixed;
-    width: $width;
-    height: $height;
-    background: rgba(#eaeaea, 0.2);
-    z-index: -1;
-    transition: transform $transition--easing $transition--length + s;
-    transform: translateX(0%) translateY(-100%);
+  z-index: 1000;
+
+  background: #975d55;
+  padding: 0px 32px;
+
+  box-sizing: border-box;
+
+  opacity: 0;
+
+  transition: all 0.4s ease-in-out;
+
+  &.sidebar-container--opened {
+    right: 0px;
+    opacity: 1;
+
+    .sidebar__links,
+    .sidebar__brand {
+      transform: translateX(0px);
+      opacity: 1;
+    }
   }
 
-  &:after {
-    background-image: url(../../../assets/convite/bg-convite.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    transition-delay: 1s;
-  }
-
-  &:before {
-    transition-delay: 0.1s;
-  }
-
-  &__content {
-    position: absolute;
-    top: 50%;
-    transform: translate(0%, -50%);
-    width: 100%;
-    text-align: center;
-    font-size: $font--size--calc;
-    font-weight: 200;
-    cursor: pointer;
-    z-index: -1;
-  }
-
-  &__list {
+  .sidebar__links {
     display: flex;
     flex-direction: column;
-  }
 
-  &__list-item {
-    position: relative;
-    display: inline-block;
-    transition-delay: $transition--length + s;
+    transform: translateX(35px);
+
     opacity: 0;
-    transform: translate(0%, 100%);
-    transition: opacity 0.2s ease, transform 0.3s ease;
-    margin-right: 25px;
-    margin-left: 25px;
-    font-size: 2.25rem;
+    transition: all 1s ease-in-out;
 
-    margin-top: 10px;
-    margin-bottom: 10px;
+    .sidebar__link {
+      max-width: 200px;
+
+      margin-bottom: 32px;
+
+      @media (max-height: 672px) {
+        margin-bottom: 16px;
+      }
+
+      @media (max-height: 480px) {
+        margin-bottom: 8px;
+      }
+
+      a {
+        font-size: 14px;
+        font-weight: lighter;
+        color: #fff;
+        text-transform: uppercase;
+        text-decoration: none;
+
+        white-space: nowrap;
+
+        cursor: pointer;
+
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          font-weight: bold;
+        }
+      }
+
+      &:last-child {
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

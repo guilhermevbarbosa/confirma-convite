@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,22 +9,28 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavbarComponent {
   authService: AuthService;
 
+  @ViewChild('closeSidebar') eCloseSidebar!: ElementRef;
+  @ViewChild('sidebar') eSidebar!: ElementRef;
+
+  classToOpenSidebar = "sidebar-container--opened";
+
   constructor(authService: AuthService) {
     this.authService = authService;
   }
 
-  handleMenu() {
-    const body = document.body;
-
-    if (body.classList.contains('nav-active')) {
-      body.classList.remove('nav-active');
-    } else {
-      body.classList.add('nav-active');
-    }
+  logout() {
+    this.authService.signOut();
   }
 
-  logout() {
-    this.handleMenu();
-    this.authService.signOut();
+  toggle() {
+    let isSidebarOpened = this.eSidebar.nativeElement.classList.contains(this.classToOpenSidebar);
+
+    if (isSidebarOpened) {
+      this.eSidebar.nativeElement.classList.remove(this.classToOpenSidebar);
+      this.eCloseSidebar.nativeElement.classList.remove(this.classToOpenSidebar);
+    } else {
+      this.eSidebar.nativeElement.classList.add(this.classToOpenSidebar);
+      this.eCloseSidebar.nativeElement.classList.add(this.classToOpenSidebar);
+    }
   }
 }

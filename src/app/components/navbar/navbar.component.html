@@ -1,17 +1,27 @@
-<div class="menu-icon" (click)="handleMenu()">
-  <span class="menu-icon__line menu-icon__line-left"></span>
-  <span class="menu-icon__line"></span>
-  <span class="menu-icon__line menu-icon__line-right"></span>
-</div>
+<em #closeSidebar class="sidebar-hamburger-container" (click)="toggle()">
+  <div></div>
+</em>
 
-<div class="nav">
-  <div class="nav__content">
-    <ul class="nav__list">
-      <li (click)="handleMenu()" routerLink="/" class="nav__list-item">Início</li>
-      <li (click)="handleMenu()" routerLink="/admin/convites" class="nav__list-item">Convites</li>
-      <li (click)="handleMenu()" routerLink="/admin/novo-convite" class="nav__list-item">Novo convite</li>
-      <li (click)="handleMenu()" routerLink="/admin/cadastrar" class="nav__list-item">Cadastrar</li>
-      <li (click)="logout()" class="nav__list-item">Logout</li>
-    </ul>
-  </div>
+<div #sidebar class="sidebar-container">
+  <ul class="sidebar__links">
+    <li (click)="toggle()" class="sidebar__link" routerLink="/">
+      <a>Início</a>
+    </li>
+
+    <li (click)="toggle()" class="sidebar__link" routerLink="/admin/convites">
+      <a>Convites</a>
+    </li>
+
+    <li (click)="toggle()" class="sidebar__link" routerLink="/admin/novo-convite">
+      <a>Novo convite</a>
+    </li>
+
+    <li (click)="toggle()" class="sidebar__link" routerLink="/admin/cadastrar">
+      <a>Cadastrar</a>
+    </li>
+
+    <li class="sidebar__link" (click)="toggle(); logout()">
+      <a>Logout</a>
+    </li>
+  </ul>
 </div>
