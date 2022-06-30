@@ -19,7 +19,8 @@ import {
   IconX,
   IconTrash,
   IconChevronLeft,
-  IconChevronRight
+  IconChevronRight,
+  IconConfetti
 } from 'angular-tabler-icons/icons';
 
 import { LoggedPagesLayoutComponent } from './views/logged-area/logged-pages-layout.component';
@@ -41,6 +42,7 @@ const icons = {
   IconTrash,
   IconChevronLeft,
   IconChevronRight,
+  IconConfetti
 }
 
 @NgModule({

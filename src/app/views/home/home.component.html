@@ -27,8 +27,25 @@
       </div>
     </div>
 
-    <div *ngIf="inviteCode" class="button-container">
-      <a class="red-button" (click)="activateInvite()">Confirmar presença</a>
+    <div class="button-container">
+      <a class="red-button" routerLink="/cardapio">
+        <div>
+          <i-tabler class="icon" name="confetti"></i-tabler>
+          Cardápio
+        </div>
+      </a>
+
+      <a *ngIf="inviteCode" class="red-button" (click)="activateInvite()">
+        <div>
+          <i-tabler class="icon" name="circle-check"></i-tabler>
+          Confirmar presença
+        </div>
+      </a>
+    </div>
+
+    <div class="bottom-info">
+      <small>* Número de convidados limitado ao convite confirmado</small>
+      <small>* Serviço de vallet - R$25,00</small>
     </div>
   </div>
 </div>
