@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-cardapio',
   templateUrl: './cardapio.component.html',
   styleUrls: ['./cardapio.component.scss']
 })
-export class CardapioComponent implements OnInit {
+export class CardapioComponent {
 
-  constructor() { }
+  constructor(private location: Location) { }
 
-  ngOnInit(): void {
+  back(): void {
+    this.location.back()
   }
-
 }
