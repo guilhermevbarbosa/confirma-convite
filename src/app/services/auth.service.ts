@@ -8,18 +8,18 @@ import {
   Auth,
   signOut,
   signInWithEmailAndPassword,
-  onAuthStateChanged
-} from "@angular/fire/auth";
+  onAuthStateChanged,
+} from '@angular/fire/auth';
 import { User } from '../models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   auth: Auth;
   router: Router;
 
-  constructor(private fApp: FirebaseApp, router: Router) {
+  constructor(readonly fApp: FirebaseApp, router: Router) {
     this.auth = getAuth(fApp);
     this.router = router;
   }
@@ -31,11 +31,11 @@ export class AuthService {
   signOut() {
     return signOut(this.auth)
       .then(() => {
-        this.router.navigateByUrl("/")
+        this.router.navigateByUrl('/');
       })
       .catch((err) => {
         console.log(err.message);
-      })
+      });
   }
 
   signInWithEmail(user: User) {

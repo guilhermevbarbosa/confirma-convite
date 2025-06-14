@@ -13,39 +13,23 @@
       <div class="top-content flex-center">
         <em class="gabi-font"></em>
         <em class="graphism"></em>
-        <em class="years_old"></em>
       </div>
 
       <div class="mid-content flex-center">
         <em class="date"></em>
         <em class="time"></em>
       </div>
+    </div>
 
-      <div class="bottom-content flex-center">
-        <em class="buffet"></em>
-        <em class="address"></em>
+    <a *ngIf="inviteCode" class="red-button" (click)="activateInvite()">
+      <div>
+        <i-tabler class="icon" name="circle-check"></i-tabler>
+        Confirmar presença
       </div>
-    </div>
-
-    <div class="button-container">
-      <a class="red-button" routerLink="/cardapio">
-        <div>
-          <i-tabler class="icon" name="confetti"></i-tabler>
-          Cardápio
-        </div>
-      </a>
-
-      <a *ngIf="inviteCode" class="red-button" (click)="activateInvite()">
-        <div>
-          <i-tabler class="icon" name="circle-check"></i-tabler>
-          Confirmar presença
-        </div>
-      </a>
-    </div>
+    </a>
 
     <div class="bottom-info">
       <small>* Número de convidados limitado ao convite confirmado</small>
-      <small>* Serviço de vallet - R$25,00</small>
     </div>
   </div>
 </div>

@@ -66,65 +66,11 @@
           width: 156px;
           height: 20px;
         }
-
-        &.years_old {
-          background-image: url(../../../assets/convite/svg/15_anos.svg);
-          margin-top: 10px;
-
-          height: 34px;
-          width: 105px;
-        }
       }
     }
 
     .mid-content {
       margin-top: 30px;
-
-      em {
-        background-size: contain;
-        background-repeat: no-repeat;
-        display: block;
-
-        &.date {
-          background-image: url(../../../assets/convite/svg/30_julho.svg);
-
-          height: 15px;
-          width: 126px;
-        }
-
-        &.time {
-          background-image: url(../../../assets/convite/svg/time.svg);
-          margin-top: 10px;
-
-          height: 15px;
-          width: 126px;
-        }
-      }
-    }
-
-    .bottom-content {
-      margin-top: 30px;
-
-      em {
-        background-size: contain;
-        background-repeat: no-repeat;
-        display: block;
-
-        &.buffet {
-          background-image: url(../../../assets/convite/svg/buffet.svg);
-
-          height: 12px;
-          width: 86px;
-        }
-
-        &.address {
-          background-image: url(../../../assets/convite/svg/address.svg);
-          margin-top: 10px;
-
-          width: 305px;
-          height: 15px;
-        }
-      }
     }
   }
 

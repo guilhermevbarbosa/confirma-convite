@@ -34,7 +34,6 @@ import { ConfirmInviteComponent } from './views/confirm-invite/confirm-invite.co
 import { LoginComponent } from './views/login/login.component';
 import { HomeComponent } from './views/home/home.component';
 import { Error404Component } from './components/error404/error404.component';
-import { CardapioComponent } from './views/cardapio/cardapio.component';
 
 const icons = {
   IconCircleCheck,
@@ -58,7 +57,6 @@ const icons = {
     LoggedPagesLayoutComponent,
     Error404Component,
     HomeComponent,
-    CardapioComponent
   ],
   imports: [
     BrowserModule,

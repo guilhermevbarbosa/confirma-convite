@@ -7,7 +7,7 @@ import {
   Firestore,
   collection,
   onSnapshot,
-  CollectionReference
+  CollectionReference,
 } from '@angular/fire/firestore';
 import { Invite } from 'src/app/models/invite.model';
 import { PaginationInstance } from '../../../../../node_modules/ngx-pagination/dist/ngx-pagination.module';
@@ -16,7 +16,7 @@ import { ExcelService } from 'src/app/services/excel.service';
 @Component({
   selector: 'app-invites-list',
   templateUrl: './invites-list.component.html',
-  styleUrls: ['./invites-list.component.scss']
+  styleUrls: ['./invites-list.component.scss'],
 })
 export class InvitesListComponent implements OnInit {
   fsRef: Firestore;
@@ -39,10 +39,14 @@ export class InvitesListComponent implements OnInit {
   public config: PaginationInstance = {
     id: this.paginationId,
     itemsPerPage: 6,
-    currentPage: 1
+    currentPage: 1,
   };
 
-  constructor(firestore: Firestore, inviteService: InviteService, exS: ExcelService) {
+  constructor(
+    firestore: Firestore,
+    inviteService: InviteService,
+    exS: ExcelService
+  ) {
     this.fsRef = firestore;
     this.iS = inviteService;
     this.node = collection(this.fsRef, '/invites');
@@ -61,7 +65,7 @@ export class InvitesListComponent implements OnInit {
         this.allInvites.push(doc.data());
       });
 
-      this.allInvites.sort(this.alphabeticalOrder)
+      this.allInvites.sort(this.alphabeticalOrder);
 
       this.handleCountFunctions();
       this.loading = false;
@@ -69,20 +73,25 @@ export class InvitesListComponent implements OnInit {
   }
 
   filterConfirmeds() {
-    this.filteredConfirmedInvites = this.allInvites.filter(invite => (invite.confirmed));
+    this.filteredConfirmedInvites = this.allInvites.filter(
+      (invite) => invite.confirmed
+    );
     this.confirmedInvitesNumber = this.filteredConfirmedInvites.length;
   }
 
   countTotalGuests() {
     this.totalInvitedGuests = this.allInvites.reduce((valor, item) => {
-      return (Number(valor) + Number(item.amount));
+      return Number(valor) + Number(item.amount);
     }, 0);
   }
 
   countTotalConfirmedGuests() {
-    this.totalInvitedConfirmedGuests = this.filteredConfirmedInvites.reduce((valor, item) => {
-      return (Number(valor) + Number(item.amount));
-    }, 0);
+    this.totalInvitedConfirmedGuests = this.filteredConfirmedInvites.reduce(
+      (valor, item) => {
+        return Number(valor) + Number(item.amount);
+      },
+      0
+    );
   }
 
   handleCountFunctions() {
@@ -111,36 +120,31 @@ export class InvitesListComponent implements OnInit {
       if (result['isConfirmed']) {
         this.loading = true;
 
-        this.iS.delete(uid)
+        this.iS
+          .delete(uid)
           .then(() => {
-            Swal.fire(
-              'Sucesso!',
-              'Deletado com sucesso',
-              'success'
-            );
+            Swal.fire('Sucesso!', 'Deletado com sucesso', 'success');
 
             this.loading = false;
           })
           .catch((error) => {
-            Swal.fire(
-              'Erro!',
-              error,
-              'error'
-            );
+            Swal.fire('Erro!', error, 'error');
 
             this.loading = false;
-          })
+          });
       }
-    })
+    });
   }
 
   exportToExcel() {
-    let excelExportObject = [];
-    this.excelService.exportToExcel(this.allInvites, "convidados");
+    const excelExportObject = [];
+    this.excelService.exportToExcel(this.allInvites, 'convidados');
   }
 
   copyLink(inviteCode: string | undefined) {
-    let site = `https://festa-gabi.web.app/#/?inviteCode=${inviteCode}`;
+    const baseUrl = `${window.location.protocol}//${window.location.host}/`;
+    const site = `${baseUrl}#/?inviteCode=${inviteCode}`;
+
     navigator.clipboard.writeText(site);
   }
 }

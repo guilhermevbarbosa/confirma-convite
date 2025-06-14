@@ -10,7 +10,6 @@ import {
   where,
   getDocs,
   updateDoc,
-  getDoc
 } from '@angular/fire/firestore';
 import Swal from 'sweetalert2';
 

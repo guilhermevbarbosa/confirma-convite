@@ -10,8 +10,7 @@ import { LoginComponent } from './views/login/login.component';
 import { LoggedPagesLayoutComponent } from './views/logged-area/logged-pages-layout.component';
 import { Error404Component } from './components/error404/error404.component';
 import { HomeComponent } from './views/home/home.component';
-import { CardapioComponent } from './views/cardapio/cardapio.component';
-// import { ConfirmInviteComponent } from './views/confirm-invite/confirm-invite.component';
+import { ConfirmInviteComponent } from './views/confirm-invite/confirm-invite.component';
 
 const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['']);
 
@@ -21,21 +20,35 @@ const routes: Routes = [
     component: LoggedPagesLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'novo-convite', component: NewInviteComponent, canActivate: [AuthGuard], data: { authGuardPipe: redirectUnauthorizedToHome } },
-      { path: 'convites', component: InvitesListComponent, canActivate: [AuthGuard], data: { authGuardPipe: redirectUnauthorizedToHome } },
-      { path: 'cadastrar', component: RegisterComponent, canActivate: [AuthGuard], data: { authGuardPipe: redirectUnauthorizedToHome } },
-    ]
+      {
+        path: 'novo-convite',
+        component: NewInviteComponent,
+        canActivate: [AuthGuard],
+        data: { authGuardPipe: redirectUnauthorizedToHome },
+      },
+      {
+        path: 'convites',
+        component: InvitesListComponent,
+        canActivate: [AuthGuard],
+        data: { authGuardPipe: redirectUnauthorizedToHome },
+      },
+      {
+        path: 'cadastrar',
+        component: RegisterComponent,
+        canActivate: [AuthGuard],
+        data: { authGuardPipe: redirectUnauthorizedToHome },
+      },
+    ],
   },
   { path: 'login', component: LoginComponent },
   { path: '', component: HomeComponent },
-  { path: 'cardapio', component: CardapioComponent },
-  // { path: 'confirmar', component: ConfirmInviteComponent },
+  { path: 'confirmar', component: ConfirmInviteComponent },
 
-  { path: '**', pathMatch: 'full', component: Error404Component }
+  { path: '**', pathMatch: 'full', component: Error404Component },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
